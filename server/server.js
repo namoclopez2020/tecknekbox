@@ -4,6 +4,17 @@ const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
+//conexion a la base de datos
+mongoose.connect(process.env.urlDB, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+}, (err, res) => {
+    if(err) throw err;
+    console.log('Base de datos online');
+});
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
